@@ -1,0 +1,52 @@
+body {
+    margin: 0;
+}
+
+nav {
+    background: green;
+    padding: 20px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: 1024px;
+    margin: 0 auto;
+}
+
+nav ul li a {
+    color: white;
+}
+
+a:hover {
+    background-color: black;
+}
+
+div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.button1 {
+    background-color: white;
+    justify-content: center;
+    padding: 30px;
+    color: black;
+
+    
+    &:hover {
+        background-color: green;
+       
+    }
+
+    &:active {
+        transform: rotate(400deg);
+        transition-duration: 3s;
+    }
+    
+}
+
+
