@@ -14,7 +14,7 @@
         <h1>Welcome to your English Dictionay</h1>
         <p>Here you can find a plenty of information about the word you are looking for.</p>
         
-        <form>
+        <form id="searchForm">
             <label for="searchWord">Enter a word</label>
             <br>
             <input 
@@ -27,22 +27,22 @@
             <label for="options">What to get</label>
             <br>
             <select id="options" name="options">
-                <option value>Everything</option>
-                <option value="definitions">Definitions</option>
-                <option value="synonyms">Synonyms</option>
-                <option value="antonyms">Antonyms</option>
-                <option value="examples">Examples</option>
-                <option value="typeOf">Is A Type Of</option>
+            <option value>Everything</option>
+            <option value="definitions">Definitions</option>
+            <option value="synonyms">Synonyms</option>
+            <option value="antonyms">Antonyms</option>
+            <option value="examples">Examples</option>
+            <option value="typeOf">Is A Type Of</option>
             </select>
             <br>
-            <button type="submit">Search</button>
+            <button type="submit">Search</button> 
         </form>
+        <div id="display-results"></div>
     </main>
 
     <footer>
-
     </footer>
-
+    <script src="project.js"></script>
 
 </body>
 </html>
