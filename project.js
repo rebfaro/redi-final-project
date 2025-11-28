@@ -24,6 +24,9 @@ async function fetchWord(url) {
 form.addEventListener('submit', async function (event) {
   event.preventDefault();
 
+  document.getElementById('display-word').textContent = "";
+  document.getElementById('myList').textContent = "";
+
   const wordInput = form.querySelector('#searchWord');
   const optionSelected = form.querySelector('#options');
 
@@ -32,8 +35,20 @@ form.addEventListener('submit', async function (event) {
 
   const url = `https://wordsapiv1.p.rapidapi.com/words/${resultWordInput}/${resultOptionSelected}`;
 
-  const result = await fetchWord(url);
-  
-  const showResult =  document.getElementById('display-results').innerHTML = result
-  
+  const resultApi = await fetchWord(url);
+
+  const readeableResult = JSON.parse(resultApi) //change 
+
+  document.getElementById('display-word').innerText = readeableResult.word
+
+  readeableResult.definitions.forEach(elem => {
+    const listItem = document.createElement("LI");
+    const text = document.createTextNode(elem.definition);
+    listItem.appendChild(text);
+    document.getElementById("myList").appendChild(listItem);
+  })
+
 });
+
+//for every definition we creat a list element inside the unorded list
+// reset at the start of the addEventListener
