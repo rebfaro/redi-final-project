@@ -20,11 +20,11 @@ body {
     background-color: rgb(0, 0, 54);
 }
 
-p, li, ul {
-    font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+p, li, ul{
+    font-family: 'Roboto';
 }
 
-h1, h2 {
+h1, h2{
     font-family: 'Roboto';
     color: rgb(183, 0, 88);
 }
@@ -38,16 +38,13 @@ div {
     margin-bottom: 10px;
 }
 
-#display-results #myList {
-    text-align: left;
-}
-
 .title{
     text-align: center;
     border-radius: 25px;
     border-style: none;
     padding: 20px;
     width: 80%;
+    margin-top: 40px;
     max-width: 700px;
     height: auto;
 }
@@ -56,16 +53,16 @@ div {
     border-radius: 25px;
     padding: 20px;
     width: 80%;
-    margin: auto;
     max-width: 700px;
     font-family: 'Roboto', 'Helvetica Neue', sans-serif;
     text-align: center;
 
 }
 
+
 label {display: inline;}
 
-input[type=text] {
+.form input {
   width: 20%;
   padding: 12px;
   margin: 8px 0;
@@ -75,9 +72,10 @@ input[type=text] {
   outline: none;
 }
 
-input[type=text]:focus {
+.form input:focus {
   border: 3px solid rgb(183, 0, 88);
 }
+
 
 select {
   width: 25%;
@@ -91,6 +89,13 @@ select {
 
 select:focus{
   border: 3px solid rgb(183, 0, 88);
+}
+
+@media only screen and (max-width: 620px) {
+  .form input,
+  .form select {
+    width: 100%;
+  }
 }
 
 .submitButton {
@@ -123,4 +128,19 @@ select:focus{
        
     }
 }
+
+#display-results{
+    display: none;
+    padding: 20px;
+    width: 80%;
+    margin: auto;
+    max-width: 700px;
+}
+
+#myList {
+    margin-left: 0;
+    padding-left: 0;
+    text-align: left;
+}
+
  

@@ -1,6 +1,6 @@
 const form = document.getElementById('searchForm');
 
-async function fetchWord(url) {
+async function fetchWord(resultWordInput, resultOptionSelected) {
   const options = {
     method: 'GET',
     headers: {
@@ -9,9 +9,11 @@ async function fetchWord(url) {
     },
   };
 
+  const url = `https://wordsapiv1.p.rapidapi.com/words/${resultWordInput}/${resultOptionSelected}`;
+
   try {
     const response = await fetch(url, options);
-    const result = await response.text();
+    const result = await response.json();
     return result;
   } catch (error) {
     console.error(error);
@@ -30,36 +32,38 @@ form.addEventListener('submit', async function (event) {
   const resultWordInput = wordInput.value;
   const resultOptionSelected = optionSelected.value;
 
-  const url = `https://wordsapiv1.p.rapidapi.com/words/${resultWordInput}/${resultOptionSelected}`;
-
-  const resultApi = await fetchWord(url);
-
-  const readeableResult = JSON.parse(resultApi) 
+  const readeableResult = await fetchWord(resultWordInput, resultOptionSelected);
   
-  document.getElementById('display-word').innerText = readeableResult.word
+  if (readeableResult.word) {
+    document.getElementById('display-word').innerText = `${readeableResult.word} - ${resultOptionSelected}`
+  } else {
+    document.getElementById('display-word').innerText = "No result"
+  }
 
   console.log(readeableResult)
 
+  document.getElementById("display-results").style.display = "block";
 
   if (resultOptionSelected === "definitions") {
     readeableResult.definitions.forEach(elem => {
-      const listItem = document.createElement("LI");
-      const text = document.createTextNode(elem.definition);
-      listItem.appendChild(text);
-      document.getElementById("myList").appendChild(listItem).innerHTML;
+      showItem(elem.definition);
     })
-  } else {
 
-    let itemsList = "<ul>";
+  } else {
     readeableResult[resultOptionSelected].forEach(elem => {
-      itemsList += "<li>" + elem + "<br>"
+      showItem(elem)
     })
-    itemsList += "</ul>"
-    document.getElementById("myList").innerHTML = itemsList
   }
   
-  if (readeableResult[resultOptionSelected].length === 0) {
+  if (readeableResult?.[resultOptionSelected].length === 0) {
     document.getElementById('myList').innerText = "No result"
   }
 
 });
+
+function showItem(itemText) {
+  const listItem = document.createElement("li");
+  const text = document.createTextNode(itemText);
+  listItem.appendChild(text);
+  document.getElementById("myList").appendChild(listItem);
+}
