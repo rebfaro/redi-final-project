@@ -7,44 +7,45 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        
-    </header>
+
     <main>
-        <h1>Welcome to your English Dictionay</h1>
-        <p>Here you can find a plenty of information about the word you are looking for.</p>
+        <div class="title">
+            <h1>Welcome to your English Dictionay</h1>
+            <p>Here you can find a plenty of information about the word you are looking for.</p>
+        </div>
+        <div class="form">
+            <form id="searchForm">
+                <label for="searchWord">Enter a word</label>
+                <input 
+                    type="text" 
+                    id="searchWord" 
+                    name="searchWord" 
+                    placeholder="e.g: Computer" 
+                    required
+                />
+
+                <label for="options">What to get</label>
+                <select id="options" name="options" required>
+                <!--<option value="everything">Everything</option>-->
+                <option value="">Choose an option</option>
+                <option value="definitions">Definitions</option>
+                <option value="synonyms">Synonyms</option>
+                <option value="antonyms">Antonyms</option>
+                <option value="examples">Examples</option>
+                <option value="typeOf">Is A Type Of</option>
+                </select>
         
-        <form id="searchForm">
-            <label for="searchWord">Enter a word</label>
-            <br>
-            <input 
-                type="text" 
-                id="searchWord" 
-                name="searchWord" 
-                placeholder="e.g: Computer" 
-            />
-            <br>
-            <label for="options">What to get</label>
-            <br>
-            <select id="options" name="options">
-            <option value>Everything</option>
-            <option value="definitions">Definitions</option>
-            <option value="synonyms">Synonyms</option>
-            <option value="antonyms">Antonyms</option>
-            <option value="examples">Examples</option>
-            <option value="typeOf">Is A Type Of</option>
-            </select>
-            <br>
-            <button type="submit">Search</button> 
-        </form>
+                <button class="submitButton" type="submit">Search</button> 
+    
+            </form>
+        </div>
         <div id="display-results">
-            <p id="display-word"></p>
+            <div>
+            <h2 id="display-word"></h2>
+            <div>
             <ul id="myList"></ul>
         </div>
     </main>
-
-    <footer>
-    </footer>
     <script src="project.js"></script>
 
 </body>

@@ -1,6 +1,3 @@
-
-//tratar essa resposta: o que eu vou acessar dentro do objeto de resposta
-
 const form = document.getElementById('searchForm');
 
 async function fetchWord(url) {
@@ -24,8 +21,8 @@ async function fetchWord(url) {
 form.addEventListener('submit', async function (event) {
   event.preventDefault();
 
-  document.getElementById('display-word').textContent = "";
-  document.getElementById('myList').textContent = "";
+  document.getElementById('display-word').innerText = "";
+  document.getElementById('myList').innerText = "";
 
   const wordInput = form.querySelector('#searchWord');
   const optionSelected = form.querySelector('#options');
@@ -37,18 +34,32 @@ form.addEventListener('submit', async function (event) {
 
   const resultApi = await fetchWord(url);
 
-  const readeableResult = JSON.parse(resultApi) //change 
-
+  const readeableResult = JSON.parse(resultApi) 
+  
   document.getElementById('display-word').innerText = readeableResult.word
 
-  readeableResult.definitions.forEach(elem => {
-    const listItem = document.createElement("LI");
-    const text = document.createTextNode(elem.definition);
-    listItem.appendChild(text);
-    document.getElementById("myList").appendChild(listItem);
-  })
+  console.log(readeableResult)
+
+
+  if (resultOptionSelected === "definitions") {
+    readeableResult.definitions.forEach(elem => {
+      const listItem = document.createElement("LI");
+      const text = document.createTextNode(elem.definition);
+      listItem.appendChild(text);
+      document.getElementById("myList").appendChild(listItem).innerHTML;
+    })
+  } else {
+
+    let itemsList = "<ul>";
+    readeableResult[resultOptionSelected].forEach(elem => {
+      itemsList += "<li>" + elem + "<br>"
+    })
+    itemsList += "</ul>"
+    document.getElementById("myList").innerHTML = itemsList
+  }
+  
+  if (readeableResult[resultOptionSelected].length === 0) {
+    document.getElementById('myList').innerText = "No result"
+  }
 
 });
-
-//for every definition we creat a list element inside the unorded list
-// reset at the start of the addEventListener
